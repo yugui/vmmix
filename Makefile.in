@@ -1,0 +1,16 @@
+CXX = @CXX@
+DEFS = @DEFS@
+LIBS = @LIBS@
+INSTALL = @INSTALL@
+OBJEXT = @OBJEXT@
+
+TARGET = vmmmix
+OBJS = cons.o
+
+
+all: $(TARGET)
+$(TARGET): $(OBJS)
+	$(CXX) -o $@ $(OBJS) $(LIBS)
+
+.cpp.o:
+	$(CXX) $(DEFS) -c -o $@ $<
