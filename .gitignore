@@ -5,3 +5,4 @@
 /Makefile
 /mmix-sim.c
 /mmix-arith.c
+/build
