@@ -1,0 +1,7 @@
+2009-04-20
+	Use mmix-20090312.(http://www-cs-faculty.stanford.edu/~knuth/programs/mmix-20090321.tar.gz)
+	Bug fixes.
+
+2008-08-27
+	Initial Version.
+	
