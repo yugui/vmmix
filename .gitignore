@@ -3,3 +3,5 @@
 /autom4te.cache
 /config.log
 /Makefile
+/mmix-sim.c
+/mmix-arith.c

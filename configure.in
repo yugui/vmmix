@@ -9,6 +9,10 @@ AC_CONFIG_SRCDIR([cons.cpp])
 AC_PROG_CXX
 AC_PROG_CC
 
+
+AC_CHECK_TOOL(CTANGLE, ctangle)
+AC_SUBST(CTANGLE)
+
 # Checks for libraries.
 
 # Checks for header files.

@@ -1,11 +1,18 @@
+CC = @CC@
 CXX = @CXX@
-DEFS = @DEFS@
+CTANGLE = @CTANGLE@
+
+#DEFS = @DEFS@
 LIBS = @LIBS@
 INSTALL = @INSTALL@
 OBJEXT = @OBJEXT@
+srcdir = @srcdir@
+CFLAGS = @CFLAGS@ -I $(srcdir)
+CXXFLAGS = @CXXFLAGS@ -I $(srcdir)
 
 TARGET = vmmmix
-OBJS = cons.o
+OBJS = mmix-sim.o mmi-arith.o \
+       cons.o enet.o hdd.o mmu.o rtc.o
 
 
 all: $(TARGET)
@@ -13,4 +20,13 @@ $(TARGET): $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LIBS)
 
 .cpp.o:
-	$(CXX) $(DEFS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(DEFS) -c -o $@ $<
+.c.o:
+	$(CC) $(CFLAGS) $(DEFS) -c -o $@ $<
+
+mmix-sim.c: $(srcdir)/mmix-sim.w $(srcdir)/mmix-sim.ch $(srcdir)/boilerplate.w
+	cd $(srcdir) && $(CTANGLE) mmix-sim.w mmix-sim.ch mmix-sim.c
+	mv $(srcdir)/mmix-sim.c .
+mmix-arith.c: $(srcdir)/mmix-arith.w $(srcdir)/mmix-arith.ch $(srcdir)/boilerplate.w $(srcdir)/vmmmix.w
+	cd $(srcdir) && $(CTANGLE) mmix-arith.w mmix-arith.c
+	mv $(srcdir)/mmix-arith.c .
